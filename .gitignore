@@ -137,3 +137,5 @@ bower.json
 .powenv
 
 # Ignore Byebug command history file.
+/public/packs
+/node_modules

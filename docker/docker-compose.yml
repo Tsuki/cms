@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+    db:
+        image: postgres
+        environment:
+            POSTGRES_USER: mh_blog
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: mh_blog_development
+        ports:
+            - 5432:5432
+#    adminer:
+#        image: adminer
+#        ports:
+#            - 8080:8080
