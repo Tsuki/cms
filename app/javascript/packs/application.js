@@ -7,4 +7,12 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+require('purecss/build/pure-min.css');
+require('./style.styl');
+import Vue from 'vue'
+import Banner from './components/Banner.vue'
+document.addEventListener('DOMContentLoaded', () => {
+  const banner = new Vue({
+    render: createEle => createEle(Banner)
+  }).$mount('#banner-container');
+})
