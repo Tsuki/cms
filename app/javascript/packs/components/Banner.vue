@@ -46,12 +46,7 @@
 </script>
 
 <style scoped lang="stylus">
-  // Header
-  logo-size = 40px
-  subtitle-size = 16px
-  banner-height = 300px
-  banner-url = "images/banner.jpg"
-  banner-right-url = "images/banner-right.png"
+  @import "../css/_variables.styl"
   #header
     height: banner-height
     position: relative
