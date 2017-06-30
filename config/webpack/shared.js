@@ -4,12 +4,12 @@
 /* eslint import/no-dynamic-require: 0 */
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve } = require('path');
-const { sync } = require('glob');
+const {basename, dirname, join, relative, resolve} = require('path');
+const {sync} = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
-const { env, settings, output, loadersDir } = require('./configuration.js');
+const {env, settings, output, loadersDir} = require('./configuration.js');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
 const entryPath = join(settings.source_path, settings.source_entry_path);
@@ -37,7 +37,8 @@ module.exports = {
 
   plugins: [
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
-    new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
+    new ExtractTextPlugin(
+        env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true
