@@ -7,6 +7,7 @@ default: &default
 
   extensions:
     - .js
+    - style.styl
 #    - .erb
 #    - .jsx
 #    - .ts
@@ -21,7 +22,6 @@ default: &default
 #    - .jpeg
 #    - .jpg
 #    - .styl
-    - style.styl
 
 development:
   <<: *default

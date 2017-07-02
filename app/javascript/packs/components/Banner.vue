@@ -6,28 +6,45 @@
     <div id="header-outer" class="outer">
       <div id="header-title" class="inner">
         <h1 id="logo-wrap">
-          <a href="/" id="logo">{{ message }}</a>
+          <a href="/" id="logo">{{ global.title }}</a>
         </h1>
+        <h2 id="subtitle-wrap" v-if="global.subtitle">
+          <a href="/" id="subtitle">{{ global.subtitle }}</a>
+        </h2>
 
       </div>
       <div id="header-inner" class="inner">
         <nav id="main-nav">
           <a id="main-nav-toggle" class="nav-icon"></a>
-          <a class="main-nav-link" href="/"><i class="icon-home" title="Home"></i></a>
-          <a class="main-nav-link" href="/archives"><i class="icon-archive"
-                                                       title="Archives"></i></a>
+          <template v-for="menu in theme.menu">
+            <template
+                v-if="menu.enable === undefined || menu.enable !== false || menu.enable === true ">
+              <template v-if="menu.layout === 1">
+                <a class="main-nav-link" v-bind:href="menu.path">
+                  <i v-bind:class="menu.class" v-bind:title="menu.name"></i></a>
+              </template>
+              <template v-else-if="menu.layout === 2">
+                <a class="main-nav-link" v-bind:href="menu.path">
+                  <i v-bind:class="menu.class" v-bind:title="menu.name"></i>
+                  {{ menu.name }}</a>
+              </template>
+              <template v-else>
+                <a class="main-nav-link" v-bind:href="menu.path"> {{ menu.name }}</a>
+              </template>
+            </template>
+          </template>
         </nav>
         <nav id="sub-nav">
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" title="RSS Feed"
+             v-bind:href="theme.rss" v-if="theme.rss"></a>
           <a id="nav-search-btn" class="nav-icon" title="Search"></a>
         </nav>
-        <div id="search-form-wrap">
+        <div id="search-form-wrap" class="">
           <form action="//google.com/search" method="get" accept-charset="UTF-8"
-                class="search-form">
-            <input type="search" name="q" class="search-form-input" placeholder="Search">
+                class="search-form"><input type="search" name="q" class="search-form-input"
+                                           placeholder="Search">
             <button type="submit" class="search-form-submit"></button>
-            <input type="hidden" name="sitesearch" v-bind:value="domain">
-          </form>
+            <input type="hidden" name="sitesearch" value="http://Tsuki.github.io"></form>
         </div>
       </div>
     </div>
@@ -41,8 +58,8 @@
     name: 'Banner',
     data () {
       return {
-        message: store.state.global.title,
-        domain: store.state.global.url,
+        global: store.state.global,
+        theme: store.state.theme,
       }
     }
   }
@@ -129,9 +146,9 @@
 
   #main-nav
     position: absolute
-    bottom: 0px
+    bottom: 0
     @media mq-mobile
-      top: 0px
+      top: 0
 
   $nav-link
     float: left
@@ -159,7 +176,7 @@
     @extend $nav-link
     font-weight: 300
     letter-spacing: 1px
-    bottom: 0px
+    bottom: 0
     @media mq-mobile
       display: none
 

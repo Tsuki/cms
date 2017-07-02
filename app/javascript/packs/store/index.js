@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     global: {
-      "title": "Tsuki Blog",
-      "subtitle": null,
+      title: "Tsuki Blog",
+      subtitle: "My Tsuki",
       "description": null,
       "author": "Tsuki",
       "language": [
@@ -70,7 +70,7 @@ export default new Vuex.Store({
           "name": "Home",
           "path": "/",
           "class": "icon-home",
-          "layout": 1
+          "layout": 1,
         },
         {
           "name": "About",
@@ -94,13 +94,15 @@ export default new Vuex.Store({
           "name": "Pictures",
           "path": "/picture",
           "class": "icon-camera",
-          "layout": 2
+          "layout": 2,
+          enable: false
         },
         {
           "name": "Works",
           "path": "/works",
           "class": "icon-trophy",
-          "layout": 2
+          "layout": 2,
+          enable: false
         }
       ],
       "rss": "/atom.xml",
