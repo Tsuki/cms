@@ -35,14 +35,14 @@
 </template>
 
 <script>
-  import store from '../store'
+  import store from '../store/index'
   export default {
     store,
     name: 'Banner',
     data () {
       return {
-        message: store.state.title,
-        domain: store.state.url,
+        message: store.state.global.title,
+        domain: store.state.global.url,
       }
     }
   }

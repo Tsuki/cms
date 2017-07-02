@@ -6,10 +6,10 @@ default: &default
   public_output_path: packs
 
   extensions:
-    - .erb
     - .js
-    - .jsx
-    - .ts
+#    - .erb
+#    - .jsx
+#    - .ts
 #    - .coffee
 #    - .vue
 #    - .sass
