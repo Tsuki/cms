@@ -11,11 +11,13 @@ import Vue from "vue";
 import Banner from "./components/Banner.vue";
 import TurbolinksAdapter from "vue-turbolinks";
 import jQuery from "jquery";
+import Vuex from "vuex";
 require('jquery.lazyload.cjs')(jQuery);
 require('./jquery.als-1.7');
 require('./script.coffee');
 
 document.addEventListener('turbolinks:load', function () {
+  Vue.use(Vuex);
   const banner = new Vue({
     mixins: [TurbolinksAdapter],
     render: createEle => createEle(Banner)

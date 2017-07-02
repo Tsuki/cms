@@ -35,11 +35,14 @@
 </template>
 
 <script>
+  import store from '../store'
   export default {
-    data: function () {
+    store,
+    name: 'Banner',
+    data () {
       return {
-        message: "Hello Vue!",
-        domain: "http://Tsuki.github.io"
+        message: store.state.title,
+        domain: store.state.url,
       }
     }
   }
