@@ -53,6 +53,7 @@
 
 <script>
   import store from '../store/index'
+  import $ from "jquery";
   export default {
     store,
     name: 'Banner',
@@ -61,8 +62,46 @@
         global: store.state.global,
         theme: store.state.theme,
       }
+    },
+    method:{
+      stopSearchAnim: function (callback) {
+        
+      }
     }
   }
+  document.addEventListener('turbolinks:load', function () {
+  let $searchWrap = $('#search-form-wrap'),
+      isSearchAnim = false,
+      searchAnimDuration = 200;
+
+  let startSearchAnim = function () {
+    isSearchAnim = true;
+  };
+
+  let stopSearchAnim = function (callback) {
+    setTimeout(function () {
+      isSearchAnim = false;
+      callback && callback();
+    }, searchAnimDuration);
+  };
+    console.log('testing');
+  $('#nav-search-btn').on('click', function () {
+    if (isSearchAnim) {
+      return;
+    }
+    startSearchAnim();
+    $searchWrap.addClass('on');
+    stopSearchAnim(function () {
+      $('.search-form-input').focus();
+    });
+  });
+
+  $('.search-form-input').on('blur', function () {
+    startSearchAnim();
+    $searchWrap.removeClass('on');
+    stopSearchAnim();
+  });
+});
 </script>
 
 <style scoped lang="stylus">

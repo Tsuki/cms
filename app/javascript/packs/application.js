@@ -8,7 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Vue from "vue";
-import Banner from "./components/Banner.vue";
+import Banner from "./components/Header.vue";
 import TurbolinksAdapter from "vue-turbolinks";
 import Vuex from "vuex";
 require('./script.js');
