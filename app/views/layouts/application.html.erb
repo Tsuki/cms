@@ -11,8 +11,13 @@
 </head>
 
 <body>
-<div id="banner-container">
+<div id="container">
+  <div id="wrap">
+    <div id="banner-container"></div>
+    <div id="outer-container"></div>
+    <div id="footer-container"></div>
+    <%= yield %>
+  </div>
 </div>
-<%= yield %>
 </body>
 </html>

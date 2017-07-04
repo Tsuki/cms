@@ -11,14 +11,13 @@
         <h2 id="subtitle-wrap" v-if="global.subtitle">
           <a href="/" id="subtitle">{{ global.subtitle }}</a>
         </h2>
-
       </div>
       <div id="header-inner" class="inner">
         <nav id="main-nav">
           <a id="main-nav-toggle" class="nav-icon"></a>
           <template v-for="menu in theme.menu">
             <template
-                v-if="menu.enable === undefined || menu.enable !== false || menu.enable === true ">
+                v-if="menu.enable === undefined || menu.enable !== false">
               <template v-if="menu.layout === 1">
                 <a class="main-nav-link" v-bind:href="menu.path">
                   <i v-bind:class="menu.class" v-bind:title="menu.name"></i></a>
@@ -38,12 +37,13 @@
           <a id="nav-rss-link" class="nav-icon" title="RSS Feed"
              v-bind:href="theme.rss" v-if="theme.rss"></a>
           <a id="nav-search-btn" class="nav-icon" title="Search"
-          v-on:click="startSearchAnim" v-on:blur="stopSearchAnim"></a>
+             v-on:click="startSearchAnim" v-on:blur="stopSearchAnim"></a>
         </nav>
-        <div id="search-form-wrap" v-bind:class="isActive" >
+        <div id="search-form-wrap" v-bind:class="isActive">
           <form action="//google.com/search" method="get" accept-charset="UTF-8"
-                class="search-form"><input type="search" name="q" class="search-form-input"
-                                           placeholder="Search">
+                class="search-form">
+            <input type="search" name="q" class="search-form-input" placeholder="Search"
+                   ref="search" v-on:blur="stopSearchAnim">
             <button type="submit" class="search-form-submit"></button>
             <input type="hidden" name="sitesearch" value="http://Tsuki.github.io"></form>
         </div>
@@ -65,48 +65,18 @@
         isActive: "off",
       }
     },
-    methods:{
+    methods: {
       startSearchAnim: function () {
         this.isActive = "on";
+        setTimeout(function (_self) {
+          _self.$refs.search.focus();
+        }, 200, this)
       },
       stopSearchAnim: function () {
         this.isActive = "off";
       }
     }
   }
-  document.addEventListener('turbolinks:load', function () {
-//  let $searchWrap = $('#search-form-wrap'),
-//      isSearchAnim = false,
-//      searchAnimDuration = 200;
-
-//  let startSearchAnim = function () {
-//    isSearchAnim = true;
-//  };
-//
-//  let stopSearchAnim = function (callback) {
-//    setTimeout(function () {
-//      isSearchAnim = false;
-//      callback && callback();
-//    }, searchAnimDuration);
-//  };
-//    console.log('testing');
-//  $('#nav-search-btn').on('click', function () {
-//    if (isSearchAnim) {
-//      return;
-//    }
-//    startSearchAnim();
-//    $searchWrap.addClass('on');
-//    stopSearchAnim(function () {
-//      $('.search-form-input').focus();
-//    });
-//  });
-//
-//  $('.search-form-input').on('blur', function () {
-//    startSearchAnim();
-//    $searchWrap.removeClass('on');
-//    stopSearchAnim();
-//  });
-});
 </script>
 
 <style scoped lang="stylus">
